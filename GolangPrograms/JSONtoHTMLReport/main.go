@@ -43,7 +43,7 @@ func main() {
 	// Generate HTML using template
 	htmlTemplate := `<html>
 	<head>
-		<title>{{.Name}}'s Profile</title>
+		<title>HTML Test Report</title>
 	</head>
 	<body>
 		<h1>{{.Name}}</h1>
