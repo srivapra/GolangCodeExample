@@ -1,44 +1,68 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type Stack struct {
 	elements []int
+	lock     sync.Mutex
 }
 
-func (s *Stack) Push(n int) {
-	s.elements = append(s.elements, n)
-}
-
-func (s *Stack) Pop() (interface{}, error) {
-	if s.IsEmpty() {
-		return " ", fmt.Errorf("Stack is empty")
+func (s *Stack) isEmpty() bool {
+	if len(s.elements) == 0 {
+		fmt.Println("The stack is empty ")
+		return true
 	}
-	lastindex := len(s.elements) - 1
-	element := s.elements[lastindex]
-	s.elements = s.elements[:lastindex]
-	return element, nil
+	return false
 }
 
-func (s *Stack) IsEmpty() bool {
-	return len(s.elements) == 0
+func (s *Stack) Push(element int) {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+	s.elements = append(s.elements, element)
+
+}
+
+func (s *Stack) Pop() int {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+	if s.isEmpty() {
+		return 0
+	}
+	lastElement := s.elements[len(s.elements)-1]
+	s.elements = s.elements[:len(s.elements)-1]
+	return lastElement
 }
 
 func main() {
-	stack := &Stack{}
+
+	stack := Stack{}
 	stack.Push(10)
 	stack.Push(20)
+	stack.Push(30)
 	stack.Push(40)
-	stack.Push(100)
-	fmt.Println("Element pushed into stack : ", stack)
+	stack.Push(50)
 
-	// Pop elements from the stack
-	for !stack.IsEmpty() {
-		element, err := stack.Pop()
-		if err != nil {
-			fmt.Println(err)
-			break
-		}
-		fmt.Println("Popped:", element)
-	}
+	fmt.Println("Stack elements after pushing the elements into the stack : ", stack.elements)
+
+	stack.Pop()
+	fmt.Println("Stack elements after pop operation : ", stack.elements)
+
+	stack.Pop()
+	fmt.Println("Stack elements after second pop operation : ", stack.elements)
+
+	stack.Pop()
+	fmt.Println("Stack elements after third pop operation : ", stack.elements)
+
+	stack.Pop()
+	fmt.Println("Stack elements after fourth pop operation : ", stack.elements)
+
+	stack.Pop()
+	fmt.Println("Stack elements after fifth pop operation : ", stack.elements)
+
+	stack.Pop()
+	fmt.Println("Stack elements after sixth pop operation : ", stack.elements)
+
 }

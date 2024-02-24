@@ -9,7 +9,7 @@ import "fmt"
 func main() {
 
 	defer fmt.Println("Hello")
-	defer fmt.Println("World")
+	defer fmt.Println(100)
 
 	myDefer()
 
@@ -18,8 +18,11 @@ func main() {
 
 func myDefer() {
 	for i := 0; i < 5; i++ {
-
-		defer fmt.Print(i, " ")
+		if i == 4 {
+			fmt.Println("Inside for loop : ", i)
+			break
+		}
+		defer fmt.Println(i, " ")
 
 	}
 }

@@ -61,6 +61,7 @@ func main() {
 		}
 
 		log.Println("HTML report generated successfully!")
+		//c.JSON(http.StatusOK, data)
 
 	})
 
