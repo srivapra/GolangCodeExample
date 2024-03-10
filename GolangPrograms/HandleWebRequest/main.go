@@ -1,3 +1,6 @@
+// Below is an example of a simple Go program that sends an HTTP request to a server
+// and receives the response
+
 package main
 
 import (
