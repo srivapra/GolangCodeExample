@@ -1,55 +1,40 @@
 package main
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+)
 
-func threeSum(arr []int) [][]int {
+func threeSum(arr []int, sum int) [][]int {
 
 	sort.Ints(arr)
 
 	var result [][]int
 
 	for i := 0; i < len(arr)-2; i++ {
-		if i > 0 && arr[i] == arr[i-1] {
-			continue
-		}
-
 		left := i + 1
 		right := len(arr) - 1
-
 		for left < right {
-			total := arr[i] + arr[left] + arr[right]
-			if total < 0 {
-				left++
-			} else if total > 0 {
-				right--
-
-			} else {
+			if arr[i]+arr[left]+arr[right] == sum {
 				result = append(result, []int{arr[i], arr[left], arr[right]})
-			}
-
-			for left < right && arr[left] == arr[left+1] {
 				left++
-			}
-			for left < right && arr[right] == arr[right-1] {
+				right--
+			} else if arr[i]+arr[left]+arr[right] < sum {
+				left++
+			} else {
 				right--
 			}
-			left++
-			right--
-
 		}
-
 	}
-
 	return result
+
 }
 
 func main() {
 
-	arr := []int{-1, 0, 1, 2, -1, -4}
+	arr := []int{1, 4, 45, 6, 10, 8}
+	sum := 22
 
-	sort.Ints(arr)
+	fmt.Println(threeSum(arr, sum))
 
-	for i := 1; i < len(arr)-2; i++ {
-
-	}
 }
