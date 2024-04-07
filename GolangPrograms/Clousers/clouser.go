@@ -17,6 +17,15 @@ func incrementor() func() int {
 	}
 }
 
+func incrementor1() func() int {
+
+	return func() int {
+		i := 0
+		i++
+		return i
+	}
+}
+
 func main() {
 
 	value := incrementor()
@@ -26,5 +35,13 @@ func main() {
 
 	value1 := incrementor()
 	fmt.Println(value1())
+
+	value2 := incrementor1()
+	fmt.Println(value2())
+	fmt.Println(value2())
+	fmt.Println(value2())
+
+	value3 := incrementor1()
+	fmt.Println(value3())
 
 }
