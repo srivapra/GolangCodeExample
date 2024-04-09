@@ -5,6 +5,15 @@ import (
 	"strings"
 )
 
+func PalindromeOrNot(str string) bool {
+	for i := 0; i < len(str)/2; i++ {
+		if str[i] != str[len(str)-1-i] {
+			return false
+		}
+	}
+	return true
+}
+
 func isPalindrome(str string) bool {
 
 	rns := []rune(str)
@@ -28,12 +37,12 @@ func isPalindrome(str string) bool {
 
 func main() {
 
-	string := "Level"
+	string := "racecarw"
 
 	// Converting the string to lower case
 	string = strings.ToLower(string)
 
 	fmt.Println("Input String : ", string)
 
-	fmt.Println(isPalindrome(string))
+	fmt.Println(PalindromeOrNot(string))
 }
