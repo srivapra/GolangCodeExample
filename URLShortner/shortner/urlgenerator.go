@@ -32,6 +32,9 @@ func (us *URLShortener) HandleURLShorten(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
+	// Record the domain of the original URL
+	recordDomain(originalURL)
+
 	/*
 		 It iterates through the existing shortened URLs to check if the original URL
 		 has already been shortened. If it finds a match, it renders an HTML response with
