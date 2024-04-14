@@ -27,3 +27,14 @@ The server will run on http://localhost:8080 by default.
 - Metrics: 'GET /metrics'
     - Response Body: 
     [ {"domain":"domain-name","count":count},{"domain":"domain-name","count":count},{"domain":"domain-name","count":count} ]
+
+# Dockerization
+1. Build Docker image :
+    - docker build -t url-shortener .
+
+2. Run Docker container :
+    - docker run -d -p 8080:8080 --name url-shortener-app url-shortener
+
+# Accessing the Services
+- The service will be available at http://localhost:8080
+- Access metrics API: http://localhost:8080/metrics
