@@ -48,7 +48,7 @@ func GetTopDomains(w http.ResponseWriter, r *http.Request) {
 
 	// Sort domain counts by count in descending order
 	sort.Slice(domainCounts, func(i, j int) bool {
-		return domainCounts[i].Count < domainCounts[j].Count
+		return domainCounts[i].Count > domainCounts[j].Count
 	})
 
 	// Marshal domain counts to JSON
