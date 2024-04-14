@@ -16,7 +16,7 @@ type URLShortener struct {
 }
 
 // method handles the logic for shortening URLs
-func (us *URLShortener) HandleShorten(w http.ResponseWriter, r *http.Request) {
+func (us *URLShortener) HandleURLShorten(w http.ResponseWriter, r *http.Request) {
 
 	// checks if the HTTP request method is POST.
 	// If it's not, it returns a "405 Method Not Allowed" error.
