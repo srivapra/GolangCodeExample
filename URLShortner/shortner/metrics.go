@@ -51,6 +51,11 @@ func GetTopDomains(w http.ResponseWriter, r *http.Request) {
 		return domainCounts[i].Count > domainCounts[j].Count
 	})
 
+	// Take only top 3 domains
+	if len(domainCounts) > 3 {
+		domainCounts = domainCounts[:3]
+	}
+
 	// Marshal domain counts to JSON
 	data, err := json.Marshal(domainCounts)
 	if err != nil {
