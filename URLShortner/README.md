@@ -30,10 +30,10 @@ The server will run on http://localhost:8080 by default.
 
 # Dockerization
 1. Build Docker image :
-    - docker build -t url-shortener .
+    - docker build -t prashantsrivastava98/url-shortener .
 
 2. Run Docker container :
-    - docker run -d -p 8080:8080 --name url-shortener-app url-shortener
+    - docker run -d -p 8080:8080 --name url-shortener-app prashantsrivastava98/url-shortener
 
 # Accessing the Services
 - The service will be available at http://localhost:8080
