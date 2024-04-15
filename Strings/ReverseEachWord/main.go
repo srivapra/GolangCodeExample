@@ -5,20 +5,24 @@ import (
 	"strings"
 )
 
-func ReverseEachWord(s string) {
-	splitString := strings.Split(s, " ")
+func ReverseEachWord(str string) string {
+	word := strings.Fields(str)
 
-	for _, v := range splitString {
-		rn := []rune(v)
-		for i, j := 0, len(rn)-1; i < j; i, j = i+1, j-1 {
-			rn[i], rn[j] = rn[j], rn[i]
-		}
-		fmt.Println(string(rn))
+	for i, j := range word {
+		word[i] = ReverseString(j)
 	}
+	return strings.Join(word, " ")
+}
 
+func ReverseString(str string) string {
+	rn := []rune(str)
+	for i, j := 0, len(str)-1; i < j; i, j = i+1, j-1 {
+		rn[i], rn[j] = rn[j], rn[i]
+	}
+	return string(rn)
 }
 
 func main() {
-	str := "Hi Hello World"
-	ReverseEachWord(str)
+	str := "Let's take LeetCode contest"
+	fmt.Print(ReverseEachWord(str))
 }
