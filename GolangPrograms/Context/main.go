@@ -7,7 +7,7 @@ zip it and send the zipped response back. The request has been triggered from th
 say it takes 70 seconds to complete. The user is not patient enough and decides to cancel it when it
 is still being processed by the server. Wouldn’t it be nice if the server gets to know that the
 user(client) has cancelled the request so that the server can also terminate the request and save
-valuable CPU and memory? This is the perfect use case for a context. The context allows the server
+valuable CPU and memory? This is the perfect use case for a context. The context allows  the server
 to know when a request has been cancelled by the client so that it can terminate its resources and move on.
 */
 package main

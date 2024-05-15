@@ -1,35 +1,32 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"log"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-type GreetingResponse struct {
-	Greeting string `json:"greeting"`
+type User struct {
+	BookId     int    `json:"bookId"`
+	BookTitle  string `json:"bookTitle"`
+	BookAuthor string `json:"bookAuthor"`
 }
 
-func greetHandler(w http.ResponseWriter, r *http.Request) {
-	var response GreetingResponse
+var users []User
 
-	name := r.URL.Query().Get("name")
-	if name != "" {
-		response.Greeting = fmt.Sprintf("Hello, %s !", name)
-	} else {
-		response.Greeting = fmt.Sprintf("Hello User")
+func CreateUser(c gin.Context) {
+	var user User
+
+	if err := c.BindJSON(&user); err != nil {
+		c.AbortStatusWithJSON(http.StatusBadRequest, gin.H{"Error : ", err.Error()})
+		return
 	}
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(response)
+	users = append(users, user)
+	c.JSON(http.StatusCreated, gin.H{"User Created Successfully "})
 }
 
 func main() {
-	http.HandleFunc("/greet", greetHandler)
-
-	log.Printf("greeter running on :8888")
-	if err := http.ListenAndServe(":8888", nil); err != nil {
-		log.Printf("shutting down: %v", err)
-	}
-
+	router := gin.Default()
+	router.POST("/user", CreateUser)
+	router.Run(":8080")
 }

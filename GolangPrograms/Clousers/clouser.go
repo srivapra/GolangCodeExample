@@ -2,6 +2,12 @@
 // A closure can outlive the scope in which it was created. Thus it can access variables within
 // that scope, even after the scope is destroyed.
 
+/* Why we can use closure function?
+The closure function is used for data isolation means that each closure has its own state.
+If we will run the below code and see the output. We can see value() and value1() having different
+state
+*/
+
 package main
 
 import "fmt"
